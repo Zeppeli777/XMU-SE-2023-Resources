@@ -7,11 +7,11 @@
 ## 关于作业和实验
 大部分在AI辅助下完全能高效完成的作业和实验，本仓库就不提供了
 ## 其他仓库指路
-- 23级软工
-- 22级软工
-- 19级软工
-- 23级计科
-- XMU资料开源仓库鼻祖，有考古意愿可以参考
+- [其他23级软工]() 
+- [22级软工](https://github.com/YUK1PEDIA/XMU-SE)
+- [21级软工](https://github.com/lovemaoli/XMU_SeLearning)
+- [23级计科](https://github.com/Misaka-xxw/XMU-CS-exam)
+- [XMU资料开源仓库鼻祖](https://github.com/XMU-Helper/home)，虽然已经很久没有更新了，但仍然有很多值得参考的资料。内容跟本专业不是强相关，不过对于培养全局视野、构建对大学生活的整体认知有很大帮助。
 
 # 学园生存攻略
 见目录攻略

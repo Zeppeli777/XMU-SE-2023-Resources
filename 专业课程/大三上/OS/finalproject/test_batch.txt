@@ -1,0 +1,11 @@
+echo Starting batch test
+dir
+echo Current directory test
+cd
+echo Environment variables test
+environ
+echo Echo test with output
+echo This is a test message
+pause
+echo Batch test complete
+quit

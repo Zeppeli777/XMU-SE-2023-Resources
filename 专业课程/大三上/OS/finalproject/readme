@@ -1,0 +1,264 @@
+MYSHELL USER MANUAL
+===================
+
+NAME
+    myshell - a simple command line interpreter
+
+SYNOPSIS
+    myshell [batchfile]
+
+DESCRIPTION
+    myshell is a simple command line shell that provides a basic command 
+    interpreter for Linux systems. It supports both interactive mode and 
+    batch mode operation.
+
+    When invoked without arguments, myshell operates in interactive mode,
+    displaying a prompt and waiting for user commands. When invoked with
+    a batchfile argument, myshell reads and executes commands from the
+    specified file.
+
+COMMAND PROMPT
+    The command prompt displays the current working directory followed by
+    a '>' character:
+
+        /home/user/documents>
+
+INTERNAL COMMANDS
+    myshell provides the following built-in commands:
+
+    cd [directory]
+        Change the current working directory to <directory>. If no
+        directory is specified, displays the current directory path.
+        This command also updates the PWD environment variable.
+
+        Examples:
+            cd /home/user       Change to /home/user directory
+            cd ..               Change to parent directory
+            cd                  Display current directory
+
+    clr
+        Clear the terminal screen.
+
+        Example:
+            clr
+
+    dir [directory]
+        List the contents of <directory>. If no directory is specified,
+        lists the contents of the current directory. The listing includes
+        file names, sizes, and types (FILE or DIR).
+
+        Examples:
+            dir                 List current directory
+            dir /home/user      List /home/user directory
+            dir > output.txt    Redirect listing to file
+
+    environ
+        Display all environment variables and their values.
+
+        Example:
+            environ
+
+    echo <comment>
+        Display the specified text on the screen followed by a newline.
+        Multiple spaces and tabs may be reduced to a single space.
+
+        Examples:
+            echo Hello World
+            echo This is a test > output.txt
+
+    help
+        Display this user manual using the 'more' command for pagination.
+        The readme file must be present in the current directory.
+
+        Example:
+            help
+
+    pause
+        Suspend shell operation until the Enter key is pressed.
+
+        Example:
+            pause
+
+    quit
+        Exit the shell.
+
+        Example:
+            quit
+
+EXTERNAL COMMANDS
+    Any command that is not an internal command is treated as an external
+    program invocation. The shell will search for the program in the
+    directories specified by the PATH environment variable, create a child
+    process, and execute the program.
+
+    Examples:
+        ls -l               List files using system ls command
+        gcc hello.c         Compile a C program
+        ./myprogram         Execute program in current directory
+
+INPUT/OUTPUT REDIRECTION
+    myshell supports redirection of standard input and standard output.
+
+    Input Redirection (<)
+        Redirect standard input from a file.
+
+        Syntax:
+            command < inputfile
+
+        Example:
+            sort < unsorted.txt
+
+    Output Redirection (>)
+        Redirect standard output to a file. If the file exists, it will
+        be overwritten.
+
+        Syntax:
+            command > outputfile
+
+        Example:
+            ls -l > filelist.txt
+            echo Hello > greeting.txt
+
+    Output Redirection - Append (>>)
+        Redirect standard output to a file. If the file exists, output
+        will be appended to the end of the file.
+
+        Syntax:
+            command >> outputfile
+
+        Example:
+            echo Line 1 >> log.txt
+            echo Line 2 >> log.txt
+
+    Combined Redirection
+        Input and output can be redirected in the same command.
+
+        Example:
+            sort < input.txt > output.txt
+
+    Note: The dir and echo internal commands support output redirection.
+
+BACKGROUND EXECUTION
+    Commands can be executed in the background by appending an ampersand
+    (&) character to the end of the command line. When a command is run
+    in the background, the shell immediately returns to the command prompt
+    without waiting for the command to complete.
+
+    Syntax:
+        command &
+
+    Examples:
+        sleep 100 &
+        gcc large_project.c &
+
+    The shell will display the process ID (PID) of the background process:
+        [Background] PID: 12345
+
+BATCH MODE
+    myshell can execute commands from a batch file. To run in batch mode,
+    provide the filename as a command line argument when starting the shell:
+
+        myshell mybatch.txt
+
+    In batch mode:
+    - Commands are read from the specified file
+    - Each command is echoed to the screen before execution
+    - The shell exits when the end of the file is reached
+    - No command prompt is displayed
+
+    Example batch file content:
+        cd /tmp
+        echo Starting batch processing
+        dir
+        echo Batch processing complete
+
+ENVIRONMENT
+    The shell sets the following environment variable:
+
+    shell
+        Contains the full pathname of the myshell executable.
+
+        Example:
+            /home/user/myshell
+
+    The shell also inherits all environment variables from its parent
+    process. You can view all environment variables using the 'environ'
+    command.
+
+COMMAND LINE SYNTAX
+    Command lines consist of a command name followed by optional arguments,
+    redirection operators, and control operators. Elements are separated by
+    one or more spaces or tabs.
+
+    General syntax:
+        command [arg1] [arg2] ... [< input] [> output] [&]
+
+    Notes:
+    - Arguments, redirection operators (<, >, >>), and the background
+      operator (&) must be separated by whitespace
+    - Empty lines are ignored
+    - Maximum command line length is 1024 characters
+    - Maximum number of arguments is 64
+
+EXAMPLES
+
+    Basic Commands:
+        cd /home/user           Change to /home/user directory
+        clr                     Clear screen
+        dir                     List current directory
+        echo Hello World        Display message
+        pause                   Pause until Enter pressed
+        quit                    Exit shell
+
+    External Programs:
+        ls -la                  Run ls command
+        ps aux                  Display processes
+        ./myprogram arg1        Run local program
+
+    Redirection:
+        dir > listing.txt       Save directory listing
+        echo Text >> log.txt    Append to log file
+        sort < data.txt         Sort file contents
+        wc -l < file.txt > count.txt    Count lines
+
+    Background Execution:
+        sleep 60 &              Sleep in background
+        long_process &          Run process in background
+
+    Batch Mode:
+        myshell commands.txt    Execute batch file
+
+NOTES
+    - The shell uses the PATH environment variable to locate external
+      commands
+    - The current working directory is displayed in the prompt
+    - Background processes continue to run after the shell exits
+    - The help command requires the 'readme' file in the current directory
+    - I/O redirection is performed before command execution
+
+LIMITATIONS
+    - No command history or editing
+    - No tab completion
+    - No wildcard expansion (*, ?)
+    - No command substitution
+    - No piping between commands
+    - No job control (fg, bg, jobs)
+    - No signal handling customization
+
+ERROR MESSAGES
+    The shell provides descriptive error messages for common problems:
+
+    - "command not found": The specified command does not exist
+    - "cannot open directory": Directory does not exist or no permission
+    - "cannot open file": File redirection failed
+    - "fork failed": System unable to create child process
+    - "cannot open batch file": Batch file does not exist
+
+AUTHOR
+    Tengkai Pan(37220232203786) - Operating Systems Course Project
+
+VERSION
+    1.0 - December 2025
+
+SEE ALSO
+    bash(1), sh(1), csh(1), tcsh(1)

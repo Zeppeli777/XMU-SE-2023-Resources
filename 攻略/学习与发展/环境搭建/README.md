@@ -5,7 +5,8 @@
 - AI agent：最推荐的方法，手把手教你的老师。通常面临两个问题：csdn等平台的第三方指导文章可能已经过时，或者不适合你的环境；请学长、老师等求助可能面临他们没时间或者也不知道的情况。
   - 入门：trae IDE（要注意别给太高权限）。推荐原因：完全免费，且没有复杂申请流程。可以帮写配置文件，一步步指导。
   - 进阶：GitHub Copilot。推荐原因：有学生认证可以免费使用gpt5等模型，只是认证流程会比较麻烦。推荐教程：https://bilibili.com/video/BV1Abp1z6Eqs/?spm_id_from=333.1391.0.0
-  - 付费进阶：Cursor、Claude。
+  - 付费进阶：Cursor、Claude Code、CodeX、Gemini cli、antigravity。
+  - 注：建议了解agent与workflow、prompt engineering的区别，以及mcp的概念、使用。
 - 官方文档：最权威的指导，但是可能晦涩难懂（学会使用翻译插件）。
 - 社区：最活跃的指导，但是可能鱼龙混杂。官方社区，各种博客网站，交流群（如无忧e课堂）等。
 
